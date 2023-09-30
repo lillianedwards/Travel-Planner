@@ -39,6 +39,9 @@ Trip.init (
   {
     sequelize,
     modelName: 'trip',
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true, 
   }
 );
 

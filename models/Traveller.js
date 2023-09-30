@@ -31,6 +31,9 @@ Traveller.init (
 
     sequelize,
     modelName: "traveller",
+    timestamps: false,
+    freezeTableName: true,
+    underscored: true, 
 
   }
 
