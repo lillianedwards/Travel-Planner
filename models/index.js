@@ -35,7 +35,7 @@ const Location = require("./Location");
 
 
 
-    //EITHER THIS DOESN't 
+    //THIS IS A FUCKING PROBLEM - CAN'T CASCADE BECAUSE ASK BCS LEARNING ASSISTANT GAVE ME THE WORST BAND AID FIX I'VE EVER HEARD
     //ASK BCS SUGGESTION --> then told me to comment it out 
     Traveller.belongsToMany(Location, { through: Trip });
     Location.belongsToMany(Traveller, { through: Trip });

@@ -32,7 +32,7 @@ router.get("/:traveller_id", async (req, res) => {
     const singleTravellerData = await Traveller.findByPk(
       req.params.traveller_id,
       // {
-      //   include: [{ model: Location }],
+      //   include: [{ model: Location }, {model: Trip}],
       // }
     );
     if (!singleTravellerData) {
