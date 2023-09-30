@@ -1,7 +1,8 @@
 const router = require('express').Router();
-const Traveller = require('../models/Traveller');
+const Traveller = require('../../models/Traveller');
 
-
+//http://localhost:3001/api/travellers
+//WORKS ✅
 router.get('/', async (req, res) => {
   try {
     const travellerData = await Traveller.findAll()
@@ -11,6 +12,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//
 router.post('/', async (req, res) => {
   try {
     const newTraveller = await Traveller.create(req.body);
@@ -19,3 +21,6 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+
+module.exports = router;
