@@ -5,10 +5,11 @@ class Traveller extends Model {}
 
 Traveller.init (
   {
-    traveller_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
@@ -18,16 +19,15 @@ Traveller.init (
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
+      unique: true,
+      validata: {
+        isEmail: true
+      }
+    }
   },
   
   {
-    // hooks: {
-    //   beforeCreate: async (travellerData) => {
-    //     travellerData.email = await  travellerData.email.toLowerCase();
-    //     return travellerData;
-    //   },
-    // },
+    
 
     sequelize,
     modelName: "traveller",

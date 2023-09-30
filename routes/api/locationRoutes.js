@@ -27,15 +27,14 @@ router.post("/", async (req, res) => {
 
 //http://localhost:3001/api/locations/:location_id
 //GET 1 LOCATION BY :location_id
-// NOT WORKING ❌ 
-//COMMENTING OUT ASSOCIATIONS IN MODELS/INDEX.JS ALLOWS TABLES TO MATCH /FORMAT CORRECTLY WITHOUT DOUBLES BUT THEN DOESN'T ALLOW INCLUDE TO WORK IN THE ROUTE
-router.get("/:location_id", async (req, res) => {
+// WORKS ✅
+router.get("/:id", async (req, res) => {
   try {
     const singleLocationData = await Location.findByPk(
-      req.params.location_id,
-      // {
-      //   include: [{ model: Trip }],
-      // }
+      req.params.id,
+      {
+        include: [{ model: Traveller, through: Trip, as: 'location_travellers'}]
+      }
     );
     if (!singleLocationData) {
       res.status(404).json({ message: "No location found with that id!" });
@@ -50,13 +49,13 @@ router.get("/:location_id", async (req, res) => {
 
 //http://localhost:3001/api/locations/:location_id
 //DELETE 1 LOCATION BY ID
-//WORKS, KINDA... ☑️ CANNOT CASCADE AND DELETE ASSOCIATED TRIPS BECAUSE OF ERROR LISTED ABOVE WITH GET BY ID ROUTE
-router.delete('/:location_id', async (req,res) => {
+//Don't think this is working - need to create more travelers and trips to test with 
+router.delete('/:id', async (req,res) => {
   try {
     const singleLocationDelete = await Location.destroy({
       where: {
-        location_id: req.params.location_id,
-      },
+        id: req.params.id,
+      }
     });
     if (!singleLocationDelete) {
       res.status(404).json({ message: "No location found with that id!" });

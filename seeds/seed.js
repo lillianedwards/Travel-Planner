@@ -16,12 +16,12 @@ const seedDatabase = async () => {
   // Create trips at random
   for (let i = 0; i < 10; i++) {
     // Get a random traveller's `id`
-    const { traveller_id: randomTravellerId } = travellers[
+    const { id: randomTravellerId } = travellers[
       Math.floor(Math.random() * travellers.length)
     ];
 
     // Get a random location's `id`
-    const { location_id: randomLocationId } = locations[
+    const { id: randomLocationId } = locations[
       Math.floor(Math.random() * locations.length)
     ];
 

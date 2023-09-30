@@ -2,6 +2,28 @@ const Traveller = require("./Traveller");
 const Trip = require("./Trip");
 const Location = require("./Location");
 
+//MANY-TO-MANY association uses 2 belongsToMany statements
+//"Travellers have many locations"
+
+Traveller.belongsToMany(Location, {
+//Defining the third table needed to store the foreign keys
+  through: {
+    model: Trip,
+    unique: false
+  },
+//Define an alias for when data is retrieved
+  as: 'planned_trips'
+});
+
+
+Location.belongsToMany(Traveller, {
+  through: {
+    model: Trip,
+    unique: false
+  },
+  as: 'location_travellers'
+});
+
 
 //TRY #1
 // Traveller.hasMany(Location, {
@@ -37,8 +59,9 @@ const Location = require("./Location");
 
     //THIS IS A FUCKING PROBLEM - CAN'T CASCADE BECAUSE ASK BCS LEARNING ASSISTANT GAVE ME THE WORST BAND AID FIX I'VE EVER HEARD
     //ASK BCS SUGGESTION --> then told me to comment it out 
-    Traveller.belongsToMany(Location, { through: Trip });
-    Location.belongsToMany(Traveller, { through: Trip });
+    // Traveller.belongsToMany(Location, { through: Trip });
+    // Location.belongsToMany(Traveller, { through: Trip });
+
 
 
 

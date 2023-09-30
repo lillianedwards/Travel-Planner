@@ -6,13 +6,13 @@ class Trip extends Model {}
 
 Trip.init (
   {
-    trip_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     trip_budget: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER, //.DECIMAL(10,2)
       allowNull: false,
       isNumeric: true,
     },
@@ -25,15 +25,17 @@ Trip.init (
       type: DataTypes.INTEGER,
       references: {
         model: 'traveller',
-        key: 'traveller_id',
-      },
+        key: 'id',
+        unique: false
+      }
     },
     location_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'location',
-        key: 'location_id',
-      },
+        key: 'id',
+        unique: false
+      }
     },
   }, 
   {
