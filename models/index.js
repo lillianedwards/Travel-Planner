@@ -8,17 +8,23 @@ Traveller.hasMany(Location, {
 } 
 );
 
-Location.belongsToMany(Traveller, {
-  through: Trip,
-  foreignKey: "location_id",
-});
+// Location.belongsToMany(Traveller, {
+//   through: Trip,
+//   foreignKey: "location_id",
+// });
 
-Traveller.belongsToMany(Location, {
-  through: Trip,
+// Traveller.belongsToMany(Location, {
+//   through: Trip,
+//   foreignKey: "traveller_id"
+// });
+
+
+Trip.belongsToMany(Traveller, {
+  through: Location,
   foreignKey: "traveller_id"
 });
 
-// Trips.belongsToMany(Location, {
-//   thro
-//   foreignKey: "trip_id",
-// })
+Trip.belongsToMany(Location, {
+  through: Traveller,
+  foreignKey: "location_id"
+});
