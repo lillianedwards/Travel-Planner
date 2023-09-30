@@ -2,6 +2,8 @@ const Traveller = require("./Traveller");
 const Trip = require("./Trip");
 const Location = require("./Location");
 
+
+//TRY #1
 // Traveller.hasMany(Location, {
 //   foreignKey: "location_id",
 //   onDelete: 'CASCADE',
@@ -18,18 +20,28 @@ const Location = require("./Location");
 //   foreignKey: "traveller_id"
 // });
 
-Traveller.belongsToMany(Location, { through: Trip });
-Location.belongsToMany(Traveller, { through: Trip });
 
+// TRY #2
 // Trip.belongsToMany(Traveller, {
-//   through: Location,
-//   foreignKey: "traveller_id"
-// });
+  //   through: Location,
+  //   foreignKey: "traveller_id"
+  // });
+  
+  // Trip.belongsToMany(Location, {
+    //   through: Traveller,
+    //   foreignKey: "location_id"
+    // });
+    
 
-// Trip.belongsToMany(Location, {
-//   through: Traveller,
-//   foreignKey: "location_id"
-// });
+
+
+    //EITHER THIS DOESN't 
+    //ASK BCS SUGGESTION --> then told me to comment it out 
+    Traveller.belongsToMany(Location, { through: Trip });
+    Location.belongsToMany(Traveller, { through: Trip });
+
+
+
 
 module.exports = {
   Traveller,
